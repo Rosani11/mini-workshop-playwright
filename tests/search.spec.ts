@@ -10,12 +10,20 @@ test.beforeEach(async ({ page }) => {
 
 // Test to validate the search functionality
 test('User is able to use the search feature and see relevant results', async ({ page }) => {
-    // Input search term into the search box
+    // Input search term into the search box (t-shirt)
     console.log("Locating search box...");
-    const searchBox = page.locator("[id='search']"); // Updated locator
-    await searchBox.fill("t-shirt"); // Replace "t-shirt" with any test keyword
+    const searchBox = page.locator("[id='search']"); 
+    await searchBox.fill("t-shirt"); 
     console.log("Search term entered.");
     await searchBox.press("Enter");
+});
+    test('User is able to use the search feature and see relevant results2', async ({ page }) => {
+        // Input search term into the search box (Jacket)
+        console.log("Locating search box...");
+        const searchBox = page.locator("[id='search']"); 
+        await searchBox.fill("Jacket"); 
+        console.log("Search term entered.");
+        await searchBox.press("Enter");
 
     // Validate the search results page is displayed
     console.log("Validating search results page...");
@@ -26,11 +34,5 @@ test('User is able to use the search feature and see relevant results', async ({
     const searchResults = page.locator(".product-item");
     const resultsCount = await searchResults.count();
     expect(resultsCount).toBeGreaterThan(0);
-
-    // Validate a specific expected result (optional)
-    // await page.waitForSelector("[id='search']", { timeout: 15000 });
-    // const isSearchBoxVisible = await searchBox.isVisible();
-    // console.log("Search box visibility:", isSearchBoxVisible);
-    // await expect(page.locator("h1 span")).toContainText("Search results for:", { timeout: 20000 });
 
 });
